@@ -31,7 +31,7 @@ class ofApp : public ofBaseApp{
 	
 	
 	ofParameter<size_t> kernelSize;
-	ofParameter<bool>  bNormalizeKernel, bUseXYShaders;
+	ofParameter<bool>  bNormalizeKernel;
 	
 	
 	ofEventListeners kernelListeners;

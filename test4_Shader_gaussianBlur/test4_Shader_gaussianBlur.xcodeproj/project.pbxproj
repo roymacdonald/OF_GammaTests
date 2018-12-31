@@ -52,8 +52,6 @@
 		AE68B54581BE4A1DAE853180 /* ofxInputField.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxInputField.h; path = ../../../addons/ofxGui/src/ofxInputField.h; sourceTree = SOURCE_ROOT; };
 		B0D3AD0E21D9D9FA00CF7B5A /* shader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.frag; sourceTree = "<group>"; };
 		B0D3AD0F21D9D9FA00CF7B5A /* shader.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shader.vert; sourceTree = "<group>"; };
-		B0D3AD1021D9D9FA00CF7B5A /* shaderBlurY.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shaderBlurY.frag; sourceTree = "<group>"; };
-		B0D3AD1121D9D9FA00CF7B5A /* shaderBlurY.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = shaderBlurY.vert; sourceTree = "<group>"; };
 		B87C60311EC1FE841C1ECD89 /* ofxLabel.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxLabel.h; path = ../../../addons/ofxGui/src/ofxLabel.h; sourceTree = SOURCE_ROOT; };
 		C70D8946940288799E82131E /* ofxSliderGroup.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ofxSliderGroup.h; path = ../../../addons/ofxGui/src/ofxSliderGroup.h; sourceTree = SOURCE_ROOT; };
 		C88333E71C9457E441C33474 /* ofxButton.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ofxButton.cpp; path = ../../../addons/ofxGui/src/ofxButton.cpp; sourceTree = SOURCE_ROOT; };
@@ -311,8 +309,6 @@
 			children = (
 				B0D3AD0E21D9D9FA00CF7B5A /* shader.frag */,
 				B0D3AD0F21D9D9FA00CF7B5A /* shader.vert */,
-				B0D3AD1021D9D9FA00CF7B5A /* shaderBlurY.frag */,
-				B0D3AD1121D9D9FA00CF7B5A /* shaderBlurY.vert */,
 			);
 			name = shadersGL2;
 			path = bin/data/shadersGL2;
