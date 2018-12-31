@@ -3,7 +3,7 @@
 Testing different approaches to process gamma properly on openFrameworks 
 
 
-##intro
+## intro
 
 In short, on electronic devices that either capture or display images, [gamma](https://en.wikipedia.org/wiki/Gamma_correction) is the curve that relates the stored data and the light intensity that it represents. Human beings see in a sort of logarithmic way while electronic devices do it on a more linear fashion, so gamma correction needs to be done.
 
