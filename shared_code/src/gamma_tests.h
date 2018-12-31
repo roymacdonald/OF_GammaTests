@@ -52,16 +52,23 @@ inline std::vector<std::vector<float> > getGaussianKernel(size_t kernelSize, boo
 	return kernel;
 }
 //---------------------------------------------------------------------------------------------
-inline void decodeGamma(ofImage& img, float gamma){
-	auto px = img.getPixels().getData();
-	for(size_t i = 0; i < img.getPixels().size(); i++){
+inline void decodeGamma(ofPixels& pix, float gamma = 2.2){
+	auto px = pix.getData();
+	for(size_t i = 0; i < pix.size(); i++){
 		px[i] = pow(px[i]/255.0, gamma) *255;
 	} 
+}
+inline void decodeGamma(ofImage& img, float gamma = 2.2){
+	decodeGamma(img.getPixels(), gamma); 
 	img.update();
 }
 //---------------------------------------------------------------------------------------------
-inline void encodeGamma(ofImage& img, float gamma){
-	decodeGamma(img, 1/gamma);
+inline void encodeGamma(ofPixels& pix, float gamma = 2.2){
+	decodeGamma(pix, 1/gamma);
+}
+inline void encodeGamma(ofImage& img, float gamma = 2.2){
+	encodeGamma(img.getPixels(), gamma);
+	img.update();
 }
 //---------------------------------------------------------------------------------------------
 inline void drawGammaTestPattern(float brightness = 1.0f, float saturation = 1.0f){
