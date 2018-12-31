@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -19,11 +20,24 @@ class ofApp : public ofBaseApp{
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-    ofShader shaderBlurX;
-    ofShader shaderBlurY;
-
-    ofFbo fboBlurOnePass;
-    ofFbo fboBlurTwoPass;
-    
+	
+	
+	
+	ofShader shader;
+	ofFbo fboX, fboY;
     ofImage testPattern;
+	
+	ofxPanel gui;
+	
+	
+	ofParameter<size_t> kernelSize;
+	ofParameter<bool>  bNormalizeKernel, bUseXYShaders;
+	
+	
+	ofEventListeners kernelListeners;
+	
+	
+	void makeShader();
+
 };
+
