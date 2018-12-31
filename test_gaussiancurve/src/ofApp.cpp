@@ -29,88 +29,13 @@ void ofApp::setup(){
 	
 	
 	guiListener = gui.getParameter().castGroup().parameterChangedE().newListener([&](ofAbstractParameter&){
-		makeMesh2();
+		makeMesh();
 	});
 	
-//	float mean = 0.0;
-//	float sigma = 1.0;
-//	
-//	int  kSize = ofGetWidth();
-	//	int kStart = -(kSize-1)/2;
-	//	int kEnd = kSize - kStart;
+	mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
 	
-	
-	
-//	numWeights = 100;
-//	
-//	GaussianKernelCalculator kc;
-//	weights = kc.updateKernel(1, numWeights);
-//	
-//	meshes.resize(3);
-	
-//	for(auto& m : meshes){
-		mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
-//	}
-	
-//	float y_step = ofGetHeight();///kSize;
-//	
-//	float s2 = 2.0 * sigma * sigma;
-//	float p_sq = (1.0 / (sigma * sqrt(glm::two_pi<float>())));
-//	
-//	for(int i = 0; i <kSize; i++){
-//		float x = ofMap(i, 0, kSize -1, -3, 3);
-//		auto z = exp(-(pow(x - mean, 2.0) /(2.0 * pow(sigma.get(), 2.0)))) * (1.0 / (sigma * sqrt(2.0 * 3.1415)));
-//		meshes[0].addVertex({ofMap(x,-3, 3, 0, ofGetWidth()), ofMap(z, 0, 0.4, 0, ofGetHeight()),0});
-//	
-//		 x = ofMap(i, 0, kSize-1, -1, 1);
-//				auto g = exp(-(pow(x*glm::pi<float>(), 2)) ) ;//* p_sq;
-//		//		cout << i << "  " << x << "  " << gaussian[i] << endl;
-//				meshes[1].addVertex({ofMap(x,  -1, 1, 0, ofGetWidth()), g * y_step,0});
-//		
-//	}
-//	
-//	auto verts = getGaussianDistribution(0, 1, 3, 100);
-//	
-//	glm::vec2 mn, mx;
-//	for(auto& v: verts){
-//		if(v.x < mn.x) mn.x = v.x;
-//		if(v.y < mn.y) mn.y = v.y;
-//		if(v.x > mx.x) mx.x = v.x;
-//		if(v.y > mx.y) mx.y = v.y;
-//	}
-//	
-//	for(auto& v: verts){
-//		v.x = ofMap(v.x, mn.x, mx.x, 0, ofGetWidth());
-////		v.y = ofGetHeight() * (v.y);
-//		v.y = ofMap(v.y, mn.y, mx.y, 0, ofGetHeight());		
-//	}
-//	
-//	mesh.addVertices(verts);
-	
-	
-//	cout << endl;
-//	vector<float> gaussian;
-//	gaussian.resize(kSize);
-//		
-//	for(int i = 0; i < kSize; i++ ){
-//		auto x = ofMap(i, 0, kSize-1, -1, 1);
-//		gaussian[i] = exp(-(pow(x*glm::pi<float>(), 2)) ) ;//* p_sq;
-////		cout << i << "  " << x << "  " << gaussian[i] << endl;
-//		m.addVertex({ofMap(x,  -1, 1, 0, ofGetWidth()), gaussian[i]* y_step,0});
-//	}
-	
-	
-//	kernel.allocate(kSize, kSize, OF_IMAGE_GRAYSCALE);
-
-	
-	
-//	glm::vec3 center(ofGetWidth()/2, 0,0);
-//	for(auto& v: m.getVertices()){
-//		v += center;
-//	}
-	
-	glEnable(GL_FRAMEBUFFER_SRGB);
-	makeMesh2();
+//	glEnable(GL_FRAMEBUFFER_SRGB);
+	makeMesh();
 	makeKernel();
 	
 	cam.removeAllInteractions();
@@ -153,15 +78,14 @@ void ofApp::makeKernel(){
 			}else{
 				px.setColor(x, y, ofColor::fromHsb(k[x][y]*255, 255, 255));
 			}
-			//			px.setColor(x, y, ofColor::fromHsb(gaussian[x]*gaussian[y]*255, 255, 255));
-			//			px[i]= 
+			 
 		}
 	}
 	kernel.getTexture().setTextureMinMagFilter(GL_NEAREST, GL_NEAREST);
 	kernel.update();
 }
 //--------------------------------------------------------------
-void ofApp::makeMesh2(){
+void ofApp::makeMesh(){
 	auto verts = getGaussianDistribution(mean, sigma, width, numPoints);
 //	
 	mn = {1000000,100000};
@@ -172,10 +96,7 @@ void ofApp::makeMesh2(){
 		if(v.x > mx.x) mx.x = v.x;
 		if(v.y > mx.y) mx.y = v.y;
 	}
-//	
-//	float xMult =  ofGetWidth()/(mx.x - mn.x);
-//	float yMult =  ofGetHeight()/(mx.y - mn.y);
-	
+
 	mesh.clear();
 	mesh.addVertices(verts);
 
@@ -186,11 +107,7 @@ void ofApp::makeMesh2(){
 		}else{
 			mesh.addColor(ofColor::red);
 		}
-//		v.x *= xMult;//  = ofMap(v.x, mn.x, mx.x, 0, ofGetWidth());
-//		//		v.y = ofGetHeight() * (v.y);
-//		v.y *= yMult;// ofMap(v.y, mn.y, mx.y, 0, ofGetHeight());		
 	}
-//	
 	
 
 }
@@ -202,7 +119,7 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackground(0);
-//	kernel.draw(0,0);
+
 	ofRectangle s(0,0,ofGetWidth(), ofGetHeight());
 	ofRectangle r(0,0, kernel.getWidth(), kernel.getHeight());
 	r.scaleTo(s);
@@ -218,14 +135,7 @@ void ofApp::draw(){
 	ofDrawGrid(0.1, 50, true, false, false, true);
 	ofSetLineWidth(3);
 	
-//	ofSeedRandom(123);
-//	for(auto& m : meshes){
-//		ofSetColor(ofColor::fromHsb(ofRandom(255), 255, 255));
-		mesh.drawWireframe();
-//	
-//	ofSetColor(ofColor::red);
-//	meshes[1].drawWireframe();
-//	}
+	mesh.drawWireframe();
 
 	ofSetLineWidth(1);
 	float y = 1/255.0;
@@ -247,12 +157,7 @@ void ofApp::draw(){
 	
 	gui.draw();
 	
-//	ofSetColor(ofColor::yellow, 100);
-//	float w = ofGetWidth()/(float)weights.size();
-//	for(int i = 0; i < weights.size(); i++){
-//		ofDrawRectangle(i*w, 0, w, ofGetHeight()*weights[i]);
-//	}
-	
+
 	
 }
 

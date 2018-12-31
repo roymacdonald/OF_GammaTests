@@ -21,7 +21,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-	void makeMesh2();
+	void makeMesh();
 	
 	void makeKernel();
 	
