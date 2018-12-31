@@ -25,19 +25,21 @@ class ofApp : public ofBaseApp{
 	
 	ofShader shader;
 	ofFbo fboX, fboY;
-    ofImage testPattern;
+    ofImage testPattern, bluredTestPattern;
 	
 	ofxPanel gui;
 	
 	
 	ofParameter<size_t> kernelSize;
-	ofParameter<bool>  bNormalizeKernel;
+	ofParameter<bool>  bNormalizeKernel, bProcessGamma;
 	
 	
-	ofEventListeners kernelListeners;
+	ofEventListener listener;
 	
 	
 	void makeShader();
 
+	void renderShader();
+	
 };
 

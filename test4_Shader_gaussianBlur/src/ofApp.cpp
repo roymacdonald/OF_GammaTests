@@ -9,15 +9,12 @@ void ofApp::setup(){
 	gui.setup();
 	gui.add(kernelSize.set("kernelSize", 4,0,100));
 	gui.add(bNormalizeKernel.set("Normalize Kernel", true));
+	gui.add(bProcessGamma.set("Process Gamma", true));
 	
-	kernelListeners.push(kernelSize.newListener([&](size_t&){
+	listener = gui.getParameter().castGroup().parameterChangedE().newListener([&](ofAbstractParameter&){
 		makeShader();
-	}));
-	
-	kernelListeners.push(bNormalizeKernel.newListener([&](bool&){
-		makeShader();
-	}));
-	
+		renderShader();
+	});
 	
 	makeShader();
 	
@@ -28,6 +25,9 @@ void ofApp::setup(){
 	
 	fboX.allocate(testPattern.getWidth(), testPattern.getHeight(),GL_RGBA32F_ARB);
 	fboY.allocate(testPattern.getWidth(), testPattern.getHeight(),GL_RGBA32F_ARB);
+	
+	renderShader();
+	
 }
 //--------------------------------------------------------------
 void ofApp::makeShader(){
@@ -70,11 +70,14 @@ void ofApp::makeShader(){
 void ofApp::update(){
 	
 }
-
 //--------------------------------------------------------------
-void ofApp::draw(){
+void ofApp::renderShader(){
+//bluredTestPattern
+	ofPixels temp = testPattern.getPixels();
 	
-	
+	if(bProcessGamma){
+		decodeGamma(temp);
+	}
 	fboX.begin();
 	
 	shader.begin();
@@ -98,9 +101,18 @@ void ofApp::draw(){
 	
 	fboY.end();
 	
-	//----------------------------------------------------------
+	fboY.readToPixels(bluredTestPattern.getPixels());
+	if(bProcessGamma){
+		encodeGamma(bluredTestPattern);
+	}else{
+		bluredTestPattern.update();
+	}
+}
+//--------------------------------------------------------------
+void ofApp::draw(){
+	
 	ofSetColor(ofColor::white);
-	fboY.draw(0, 0);
+	bluredTestPattern.draw(0, 0);
 	
 	gui.draw();
 }
