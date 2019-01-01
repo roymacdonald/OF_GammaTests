@@ -24,6 +24,8 @@ Yet, when gamma is not handled properly you get the following image, with this n
 
 ![testPattern blured NO GammaCorrection](testPattern_blured_noGammaCorrection.png)
 
+## Compatibility
+This tests wede done using the latest gitbub master, although it should work with openFrameworks version 0.10 onwards.
 
 ## Instalation
 Just place this folder inside the `[your openFramwoks folder]/apps` folder. Create or update projects if needed using the Project Generator.
