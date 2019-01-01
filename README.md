@@ -24,6 +24,10 @@ Yet, when gamma is not handled properly you get the following image, with this n
 
 ![testPattern blured NO GammaCorrection](testPattern_blured_noGammaCorrection.png)
 
+
+## Instalation
+Just place this folder inside the `[your openFramwoks folder]/apps` folder. Create or update projects if needed using the Project Generator.
+
 ## test apps
 
 There are a few test apps here. So far
@@ -35,6 +39,9 @@ Applies opencv's gaussian blur via ofxCv and allows for gamma correction before 
 Same as previous; applies opencv's gaussian blur via ofxCv and allows for gamma correction before and after applying the blur, but in this case gamma correction is done using openGl's `glEnable(GL_FRAMEBUFFER_SRGB);`
 ### test4_Shader_gaussianBlur
 Gaussian blur applied via shader and gamma correction is done via cpu, using helper functions in `shared_code/src/gamma_tests.h`.
+
+### test5_Shader_gaussianBlur_inShaderCorrection
+Gaussian blur and gamma correction applied via shader.
 
 ### test_gaussiancurve
 Just testing the right algorithm and parameters for creating a gaussian distribution curve and kernel. Used for the shader based gaussian blur. 
