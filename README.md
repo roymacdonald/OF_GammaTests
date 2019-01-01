@@ -28,6 +28,11 @@ Yet, when gamma is not handled properly you get the following image, with this n
 ## Instalation
 Just place this folder inside the `[your openFramwoks folder]/apps` folder. Create or update projects if needed using the Project Generator.
 
+## Dependencies
+Some of the test need you to have installed the following addons
+
+* [ofxCv](https://github.com/kylemcdonald/ofxCv)
+
 ## test apps
 
 There are a few test apps here. So far
